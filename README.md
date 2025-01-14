@@ -46,7 +46,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - making the layout of the website, login on the top right corner
 - **CSS** - dinosaurs will be centered and towards the bottom of the screen to create room. May add color but for now a doodle look is good.
 - **React** - dinos interactive with clicks
-- **Service** - Can submit votes for best dino song
+- **Service** - The API I am going to use is AnimeFacts because why not. Dinosaurs would make a great anime
 - **DB/Login** - person can login so that they can record their dino songs and so they can vote.
 - **WebSocket** - Friends can see how songs are voted.
 
