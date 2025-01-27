@@ -125,3 +125,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+
+
+
+Things I have learned
+
+1/27/25    I did the Simon deliverable inside of gitbash. I used the command:
+
+$ ./deployFiles.sh -k ../key/dino-key-pair.pem -h dinosinging -s simon                               
