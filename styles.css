@@ -21,3 +21,27 @@
     justify-content: space-between;
     width: 100%;
   }
+  .fly-in {
+    animation: fly-from-left 1s ease-out;
+  }
+  
+  @keyframes fly-from-left {
+    0% {
+      transform: translateX(-200%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      opacity: 100;
+    }
+  }
+  .fly-in:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .fly-in:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .fly-in:nth-child(3) {
+    animation-delay: 1s;
+  }
