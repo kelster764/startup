@@ -69,3 +69,20 @@
     height: 100%
   }
 
+  .soprano{
+    background-image: url('baby.JPG');
+    background-size: cover;
+  }
+
+  .alto{
+    background-image: url('mom.JPG');
+    
+  }
+
+  .tenor{
+    background-image: url('kid.jpg');
+  }
+  .bass{
+    background-image: url('dad.jpg');
+  }
+
