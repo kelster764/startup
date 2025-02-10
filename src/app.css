@@ -7,10 +7,9 @@
   }
 
 
-
  header {
     text-align: center;
-    font-size: 32px;
+    font-size: 40px;
   }
 
   menu{
@@ -38,3 +37,5 @@
     flex-direction: row;
     text-align: center;
   }
+
+  
