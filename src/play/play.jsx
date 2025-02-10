@@ -1,16 +1,17 @@
 import React from 'react';
+import './play_styles.css';
 
 export function Play() {
   return (
     <main>
-    <div class="players">
+    <div className="players">
       Player:
-      <span class="player-name">Mystery player</span>
+      <span className="player-name">Mystery player</span>
     </div>
-    <ul class="notification">
-      <li class="player-name">Tim started a new game</li>
-      <li class="player-name">Ada started a new game</li>
-      <li class="player-name">Tim scored 337</li>
+    <ul className="notification">
+      <li className="player-name">Tim started a new game</li>
+      <li className="player-name">Ada started a new game</li>
+      <li className="player-name">Tim scored 337</li>
     </ul>
 
 
@@ -29,13 +30,13 @@ export function Play() {
 
     <br />
 
-    <div class="game">
-      <div class="button-container">
-        <div class = "button-container2">
-        <button class="soprano"></button>
-        <button class="alto"></button>
-        <button class="tenor"></button>
-        <button class="bass"></button>
+    <div className="game">
+      <div className="button-container">
+        <div className = "button-container2">
+        <button className="soprano"></button>
+        <button className="alto"></button>
+        <button className="tenor"></button>
+        <button className="bass"></button>
         </div>
       </div>
     </div>
