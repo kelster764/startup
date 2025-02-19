@@ -1,0 +1,95 @@
+
+@import url(https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap);
+
+*{
+    font-family: sans-serif;
+    color: black;
+    font-family: 'Freckle Face';
+  }
+
+
+
+ header {
+    text-align: center;
+    font-size: 32px;
+  }
+
+  menu{
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display:flex;
+    padding-right: 70px;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  body{
+    /* background-image: url("dad.JPG"); */
+    background-color: rgba(255,255,255);
+    text-align: center;
+    font-size: 20px;
+
+    
+  }
+  main{
+    
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+  }
+
+
+
+  section {
+  width: 100%; /* Ensure the section takes full width */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  }
+
+  img{
+    max-width: 60%;
+    max-height: 60%;
+  }
+
+/* button{
+  width: 110%;
+  height: 10%;
+  font-size: 20px;
+}
+
+input{
+  /* width: 110%; */
+  /* height: 10%;
+  font-size: 20px;
+  text-align:
+} */ 
+
+ 
+
+
+  .fly-in {
+    animation: fly-from-left 1s ease-out;
+  }
+  
+  @keyframes fly-from-left {
+    0% {
+      transform: translateX(-200%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      opacity: 100;
+    }
+  }
+  .fly-in:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .fly-in:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .fly-in:nth-child(3) {
+    animation-delay: 1s;
+  }

@@ -85,7 +85,13 @@
   .bass{
     background-image: url('dad.jpg');
   }
-
+/* 
+  main{
+    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  } */
   main{
     
     display: flex;
