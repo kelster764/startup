@@ -2,9 +2,19 @@ import React from 'react';
 import './about_style.css';
 
 export function About() {
+  const [imageUrl, setImageUrl] = React.useState('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+  const [quote, setQuote] = React.useState('Loading...');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
+
+  React.useEffect(() => {
+    setImageUrl(`website_pitch.jpg`);
+    setQuote('The dino are within you');
+    setQuoteAuthor('Ur mom');
+  }, []);
+
   return (
     <main>
-    <div id="picture" class="picture-box"><img width="400px" src="website_pitch.jpg" alt="random" /></div>
+    <div id="picture" className="picture-box"><img width="400px" src={imageUrl} alt="random image" /></div>
 
     <p>
       The dinos sing to you, you sing back to the dinos. Just press dinos to your heart's content.
@@ -15,9 +25,9 @@ export function About() {
       the mom is the tenor, and the dad is the bass.
     </p>
 
-    <div id="quote">
-      <div>The dino are within you.</div>
-      <div>- me</div>
+    <div className="quote-box">
+      <p className = 'quote'> {quote}</p>
+      <p className = 'author'>{quoteAuthor} </p>
     </div>
   </main>
   );
