@@ -1,17 +1,51 @@
 import React from 'react';
 import './play_styles.css';
 
-export function Play() {
-  const [dead, setdead] = React.useState()
-  let dead = true
-  if(dead){
-    return(<div> dead dino </div>)
+export function Play({ user }) {
+  const [dead, setdead] = React.useState(true);
+  React.useEffect(() => {
+    console.log('initial render');
+    let friends = dinoFriends;
+    setInterval(() => {
+      friends = [{ name: 'gertrude', age: 87 }, ...friends];
+      friends.pop()
+      setDinoFriends(friends);
+    }, 1000);
+    //pretend my friend sent me a dino every second
+  }, []);
+
+  const [dinoFriends, setDinoFriends] = React.useState([
+    { name: 'Rex', age: 5 },
+    { name: 'Stegosaurus', age: 8 },
+  ]);
+
+  const clicked = () => {
+    setdead(!dead);
+  };
+
+  let imgdisplay = 'mom.JPG';
+  if (!dead) {
+    imgdisplay = 'baby.JPG';
   }
-  return(
+
+  let i = 0;
+  return (
     <div>
-      dino!
-      </div>
-  )
+      user: {user}
+      {dinoFriends.map((dino) => (
+        <div key={i++}>
+          <p>{dino.name}</p>
+          <p>{dino.age}</p>
+        </div>
+      ))}
+      <button style={{ width: '200px', height: 'r0px' }} onClick={clicked}>
+        add dino
+      </button>
+      {imgdisplay} dino!
+      <img src={imgdisplay} />
+    </div>
+  );
+
   // return (
   //   <main>
   //   <div className="players">
@@ -23,7 +57,6 @@ export function Play() {
   //     <li className="player-name">Ada started a new game</li>
   //     <li className="player-name">Tim scored 337</li>
   //   </ul>
-
 
   //   <br />
 

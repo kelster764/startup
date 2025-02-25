@@ -9,47 +9,62 @@ import { Scores } from './scores/scores';
 import { About } from './about/about';
 
 export default function App() {
+  const [user, setUser] = React.useState('Billy');
   return (
     <BrowserRouter>
-  <div>
-    <header>
-      <section className="fly-in">
-      <h1>Dinos Singing</h1>
-      </section>
-      <section className="fly-in">
-      <nav>
-        <menu>
-          <li><NavLink className = 'nav-link' to="/">Home</NavLink></li>
-          <li><NavLink className = 'nav-link' to="play">Play</NavLink></li>
-          <li><NavLink className = 'nav-link' to="scores">Scores</NavLink></li>
-          <li><NavLink className = 'nav-link' to="about">About</NavLink></li>
-        </menu>
-      </nav>
-    </section>
-      <hr />
+      <div>
+        <header>
+          <section className='fly-in'>
+            <h1>Dinos Singing</h1>
+          </section>
+          <section className='fly-in'>
+            <nav>
+              <menu>
+                <li>
+                  <NavLink className='nav-link' to='/'>
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className='nav-link' to='play'>
+                    Play
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className='nav-link' to='scores'>
+                    Scores
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className='nav-link' to='about'>
+                    About
+                  </NavLink>
+                </li>
+              </menu>
+            </nav>
+          </section>
+          <hr />
+        </header>
 
-    </header>
-
-    <Routes>
-          <Route path='/' element={<Login />} exact />
-          <Route path='/play' element={<Play />} />
+        <Routes>
+          <Route path='/' element={<Login setUser={setUser} />} exact />
+          <Route path='/play' element={<Play user={user} />} />
           <Route path='/scores' element={<Scores />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<Login />} />
         </Routes>
 
-    <footer>
-      <hr />
-      <span className="text-reset">Kelly Harmon</span>
-      <br />
-      <a href="https://github.com/kelster764/startup">GitHub</a>
-    </footer>
-
-    </div>
+        <footer>
+          <hr />
+          <span className='text-reset'>Kelly Harmon</span>
+          <br />
+          <a href='https://github.com/kelster764/startup'>GitHub</a>
+        </footer>
+      </div>
     </BrowserRouter>
-    );
+  );
 }
 
 function NotFound() {
-    return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
-  }
+  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+}
