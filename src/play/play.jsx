@@ -1,16 +1,24 @@
 import React from 'react';
 import './play_styles.css';
 
+const getRandomName = () => {
+  const names = ['frick', 'jeffrey', 'donald', 'gertrude', 'quinton', 'trenton', 'bennet', 'youngsheldon']
+  return names[Math.floor(Math.random() * names.length)];
+};
+
+const getRandomAge = () => (Math.floor(Math.random() * 70) + 10);
+
 export function Play({ user }) {
   const [dead, setdead] = React.useState(true);
   React.useEffect(() => {
     console.log('initial render');
     let friends = dinoFriends;
     setInterval(() => {
-      friends = [{ name: 'gertrude', age: 87 }, ...friends];
+      const newFriend = { name: getRandomName(), age: getRandomAge() }
+      friends = [ newFriend, ...friends];
       friends.pop()
       setDinoFriends(friends);
-    }, 1000);
+    }, 10000);
     //pretend my friend sent me a dino every second
   }, []);
 
