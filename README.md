@@ -93,8 +93,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ X] **Hooks** - I did not complete this part of the deliverable.
+- [X ] **All functionality implemented or mocked out** - Yes, I have it to where the play simulates your friends showing up. once we do the databases, the play page will do more.
+- [ X] **Hooks** - I did complete this deliverable. I have it to where the login will grab your user name and display it on the play page.
 
 ## 🚀 Service deliverable
 
