@@ -1,6 +1,8 @@
 import React from 'react';
 import './play_styles.css';
 
+
+
 const getRandomName = () => {
   const names = ['frick', 'jeffrey', 'donald', 'gertrude', 'quinton', 'trenton', 'bennet', 'youngsheldon']
   return names[Math.floor(Math.random() * names.length)];
@@ -10,6 +12,7 @@ const getRandomAge = () => (Math.floor(Math.random() * 70) + 10);
 
 export function Play({ user }) {
   const [dead, setdead] = React.useState(true);
+  const[yourDino, setDino] = React.useState("");
   React.useEffect(() => {
     console.log('initial render');
     let friends = dinoFriends;
@@ -31,6 +34,10 @@ export function Play({ user }) {
     setdead(!dead);
   };
 
+  const momClicked = () => {
+
+  };
+
   let imgdisplay = 'mom.JPG';
   if (!dead) {
     imgdisplay = 'baby.JPG';
@@ -46,11 +53,20 @@ export function Play({ user }) {
           <p>{dino.age}</p>
         </div>
       ))}
-      <button style={{ width: '200px', height: 'r0px' }} onClick={clicked}>
-        add dino
+      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <img src="baby.jpg" alt="baby" style={{ width: '100px', height: 'auto' }} />
       </button>
-      {imgdisplay} dino!
-      <img src={imgdisplay} />
+      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <img src="kid.jpg" alt="kid" style={{ width: '100px', height: 'auto' }} />
+      </button>
+      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <img src="mom.jpg" alt="mom" style={{ width: '100px', height: 'auto' }} />
+      </button>
+      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <img src="dad.jpg" alt="dad" style={{ width: '100px', height: 'auto' }} />
+      </button>
+      {/* {imgdisplay} dino!
+      <img src={imgdisplay} /> */}
     </div>
   );
 
