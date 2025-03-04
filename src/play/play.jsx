@@ -34,8 +34,8 @@ export function Play({ user }) {
     setdead(!dead);
   };
 
-  const momClicked = () => {
-
+  const dinoHandler = (dino) => {
+    setDino(dino)
   };
 
   let imgdisplay = 'mom.JPG';
@@ -45,7 +45,9 @@ export function Play({ user }) {
 
   let i = 0;
   return (
+    
     <div>
+      <p>Your selected Dino: {yourDino}</p>
       user: {user}
       {dinoFriends.map((dino) => (
         <div key={i++}>
@@ -53,16 +55,16 @@ export function Play({ user }) {
           <p>{dino.age}</p>
         </div>
       ))}
-      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('baby')}>
       <img src="baby.jpg" alt="baby" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('kid')}>
       <img src="kid.jpg" alt="kid" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('mom')}>
       <img src="mom.jpg" alt="mom" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={clicked}>
+      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('dad')}>
       <img src="dad.jpg" alt="dad" style={{ width: '100px', height: 'auto' }} />
       </button>
       {/* {imgdisplay} dino!
