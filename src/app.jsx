@@ -10,6 +10,7 @@ import { About } from './about/about';
 
 export default function App() {
   const [user, setUser] = React.useState('Billy');
+  const[yourDino, setDino] = React.useState("");
   return (
     <BrowserRouter>
       <div>
@@ -48,8 +49,8 @@ export default function App() {
 
         <Routes>
           <Route path='/' element={<Login setUser={setUser} />} exact />
-          <Route path='/play' element={<Play user={user} />} />
-          <Route path='/scores' element={<Scores />} />
+          <Route path='/play' element={<Play user={user} setDino={setDino} dino = {yourDino}/>} />
+          <Route path='/scores' element={<Scores dino={yourDino} username={user}/>} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<Login />} />
         </Routes>

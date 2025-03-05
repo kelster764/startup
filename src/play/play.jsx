@@ -10,9 +10,10 @@ const getRandomName = () => {
 
 const getRandomAge = () => (Math.floor(Math.random() * 70) + 10);
 
-export function Play({ user }) {
+export function Play({ user, setDino, dino }) {
   const [dead, setdead] = React.useState(true);
-  const[yourDino, setDino] = React.useState("");
+  //const[yourDino, addDino] = React.useState("");
+
   React.useEffect(() => {
     console.log('initial render');
     let friends = dinoFriends;
@@ -38,6 +39,8 @@ export function Play({ user }) {
     setDino(dino)
   };
 
+
+
   let imgdisplay = 'mom.JPG';
   if (!dead) {
     imgdisplay = 'baby.JPG';
@@ -47,7 +50,7 @@ export function Play({ user }) {
   return (
     
     <div>
-      <p>Your selected Dino: {yourDino}</p>
+      <p>Your selected Dino: {dino}</p>
       user: {user}
       {dinoFriends.map((dino) => (
         <div key={i++}>
@@ -56,16 +59,16 @@ export function Play({ user }) {
         </div>
       ))}
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('baby')}>
-      <img src="baby.jpg" alt="baby" style={{ width: '100px', height: 'auto' }} />
+      <img src="baby.JPG" alt="baby" style={{ width: '100px', height: 'auto' }} />
       </button>
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('kid')}>
-      <img src="kid.jpg" alt="kid" style={{ width: '100px', height: 'auto' }} />
+      <img src="kid.JPG" alt="kid" style={{ width: '100px', height: 'auto' }} />
       </button>
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('mom')}>
-      <img src="mom.jpg" alt="mom" style={{ width: '100px', height: 'auto' }} />
+      <img src="mom.JPG" alt="mom" style={{ width: '100px', height: 'auto' }} />
       </button>
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('dad')}>
-      <img src="dad.jpg" alt="dad" style={{ width: '100px', height: 'auto' }} />
+      <img src="dad.JPG" alt="dad" style={{ width: '100px', height: 'auto' }} />
       </button>
       {/* {imgdisplay} dino!
       <img src={imgdisplay} /> */}
