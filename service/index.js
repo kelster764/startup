@@ -2,12 +2,14 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const express = require('express');
+const authCookieName = 'token';
+
 const app = express();
 
-let users = {};
+let users = [];
 let scores = [];
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
 
