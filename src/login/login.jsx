@@ -6,11 +6,23 @@ export function Login({ setUser }) {
   //setUser('Joe');
 
   const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [displayError, setDisplayError] = React.useState(null);
 
-  const clicked = () => {
+  async function loginUser() {
+    loginOrCreate(`/api/auth/login`);
     setUser(email);
-  
-  };
+  }
+
+  async function createUser() {
+    loginOrCreate(`/api/auth/create`);
+    setUser(email);
+  }
+
+//   const clicked = () => {
+// setUser(email);
+  // }
+  ;
   return (
     <main>
       <section>
@@ -25,12 +37,16 @@ export function Login({ setUser }) {
           </div>
           <div>
             <span>🔒</span>
-            <input type='password' placeholder='password' />
+            <input type='password' placeholder='password'
+            onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <button type='submit' onClick={clicked}>Login</button>
-          <button type='submit'>Create</button>
-    
+          <Button type='submit' variant = 'primary' onClick={() => loginUser()} disabled={!userName || !password}>
+            Login</Button>
+          <Button type='submit' variant = 'secondary' onCLick= {() => createUser()} disabled={!userName || !password}>
+            Create</Button>
       </section>
+      <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
     </main>
   );
 }
