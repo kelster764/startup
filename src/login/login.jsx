@@ -19,10 +19,27 @@ export function Login({ setUser }) {
     setUser(email);
   }
 
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ email: email, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200) {
+      localStorage.setItem('email', email);
+      // props.onLogin(userName);
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
+  }
+
 //   const clicked = () => {
 // setUser(email);
   // }
-  ;
+  // ;
   return (
     <main>
       <section>
@@ -41,12 +58,12 @@ export function Login({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button type='submit' variant = 'primary' onClick={() => loginUser()} disabled={!userName || !password}>
-            Login</Button>
-          <Button type='submit' variant = 'secondary' onCLick= {() => createUser()} disabled={!userName || !password}>
-            Create</Button>
+          <button type='submit' variant = 'primary' onClick={() => loginUser()}>
+            Login</button>
+          <button type='submit' variant = 'secondary' onClick= {() => createUser()}>
+            Create</button>
       </section>
-      <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
+      {/* <MessageDialog message={displayError} onHide={() => setDisplayError(null)} /> */}
     </main>
   );
 }
