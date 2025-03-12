@@ -8,6 +8,9 @@ const getRandomName = () => {
   return names[Math.floor(Math.random() * names.length)];
 };
 
+
+
+
 const getRandomAge = () => (Math.floor(Math.random() * 70) + 10);
 
 export function Play({ user, setDino, dino }) {
@@ -23,7 +26,7 @@ export function Play({ user, setDino, dino }) {
       friends.pop()
       setDinoFriends(friends);
     }, 10000);
-    //pretend my friend sent me a dino every second
+    
   }, []);
 
   const [dinoFriends, setDinoFriends] = React.useState([
@@ -39,7 +42,14 @@ export function Play({ user, setDino, dino }) {
     setDino(dino)
   };
 
-
+  async function saveScore(dino){
+    const newScore = {name: user, dino: dino};
+    
+    await fetch('/api/score', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newScore),
+    });
 
   let imgdisplay = 'mom.JPG';
   if (!dead) {

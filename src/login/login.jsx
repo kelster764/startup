@@ -9,6 +9,24 @@ export function Login({ setUser }) {
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
 
+  function logout() {
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    })
+      .catch(() => {
+        // Logout failed. Assuming offline
+      })
+      .finally(() => {
+        localStorage.removeItem('email');
+      });
+  }
+
+  // async function logoutUser(){
+  //   logout(`/api/auth/logout`)
+  // }
+
+
+
   async function loginUser() {
     loginOrCreate(`/api/auth/login`);
     setUser(email);
@@ -62,6 +80,8 @@ export function Login({ setUser }) {
             Login</button>
           <button type='submit' variant = 'secondary' onClick= {() => createUser()}>
             Create</button>
+          <button type = 'submit' onClick = {() => logout()}>
+            logout</button>
       </section>
       {/* <MessageDialog message={displayError} onHide={() => setDisplayError(null)} /> */}
     </main>

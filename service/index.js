@@ -5,13 +5,18 @@ const express = require('express');
 const authCookieName = 'token';
 
 const app = express();
+app.use(express.json());
+
+app.use(cookieParser());
 
 let users = [];
 let scores = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-app.use(express.json());
+
+
+
 
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -44,6 +49,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   
   // DeleteAuth logout a user
   apiRouter.delete('/auth/logout', async (req, res) => {
+    //console.log('Cookies:', req.cookies); // See what's actually coming in
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
       delete user.token;
