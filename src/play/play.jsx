@@ -75,13 +75,13 @@ export function Play({ user, setDino, dino }) {
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('baby')}>
       <img src="baby.JPG" alt="baby" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('kid')}>
+      <button style={{ width: '115px', height: '115px' }} onClick={() => dinoHandler('kid')}>
       <img src="kid.JPG" alt="kid" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('mom')}>
+      <button style={{ width: '130px', height: '130px' }} onClick={() => dinoHandler('mom')}>
       <img src="mom.JPG" alt="mom" style={{ width: '100px', height: 'auto' }} />
       </button>
-      <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('dad')}>
+      <button style={{ width: '140px', height: '140px' }} onClick={() => dinoHandler('dad')}>
       <img src="dad.JPG" alt="dad" style={{ width: '150px', height: 'auto' }} />
       </button>
       {/* {imgdisplay} dino!

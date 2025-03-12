@@ -16,6 +16,25 @@ export function Scores() {
       });
   }, []);
 
+const scoreRows = [];
+if (scores.length){
+  for (const [i, score] of scores.entries()) {
+    scoreRows.push(
+      <tr key={i}>
+        <td>{i}</td>
+        <td>{score.name}</td>
+        <td>{score.dino}</td>
+      </tr>
+    );
+  }
+} else {
+  scoreRows.push(
+    <tr key='0'>
+      <td colSpan='2'>pick a dino!!</td>
+    </tr>
+  );
+}
+
 
   return (
     
@@ -28,10 +47,7 @@ export function Scores() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{username}</td>
-          <td>{dino}</td>
-        </tr>
+        {scoreRows}
       </tbody>
     </table>
   </main>
