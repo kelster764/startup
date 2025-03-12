@@ -17,29 +17,30 @@ export function Play({ user, setDino, dino }) {
   const [dead, setdead] = React.useState(true);
   //const[yourDino, addDino] = React.useState("");
 
-  React.useEffect(() => {
-    console.log('initial render');
-    let friends = dinoFriends;
-    setInterval(() => {
-      const newFriend = { name: getRandomName(), age: getRandomAge() }
-      friends = [ newFriend, ...friends];
-      friends.pop()
-      setDinoFriends(friends);
-    }, 10000);
+  // React.useEffect(() => {
+  //   console.log('initial render');
+  //   let friends = dinoFriends;
+  //   setInterval(() => {
+  //     const newFriend = { name: getRandomName(), age: getRandomAge() }
+  //     friends = [ newFriend, ...friends];
+  //     friends.pop()
+  //     setDinoFriends(friends);
+  //   }, 10000);
     
-  }, []);
+  // }, []);
 
-  const [dinoFriends, setDinoFriends] = React.useState([
-    { name: 'Rex', age: 5 },
-    { name: 'Stegosaurus', age: 8 },
-  ]);
+  // const [dinoFriends, setDinoFriends] = React.useState([
+  //   { name: 'Rex', age: 5 },
+  //   { name: 'Stegosaurus', age: 8 },
+  // ]);
 
   const clicked = () => {
     setdead(!dead);
   };
 
   const dinoHandler = (dino) => {
-    setDino(dino)
+    setDino(dino);
+    saveScore(dino);
   };
 
   async function saveScore(dino){
@@ -50,6 +51,7 @@ export function Play({ user, setDino, dino }) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newScore),
     });
+  }
 
   let imgdisplay = 'mom.JPG';
   if (!dead) {
@@ -60,14 +62,16 @@ export function Play({ user, setDino, dino }) {
   return (
     
     <div>
-      <p>Your selected Dino: {dino}</p>
-      user: {user}
-      {dinoFriends.map((dino) => (
-        <div key={i++}>
-          <p>{dino.name}</p>
-          <p>{dino.age}</p>
-        </div>
-      ))}
+      <p>Your selected Dino: {dino} </p>
+      <p>
+        user: {user}
+        </p>
+      {/* {dinoFriends.map((dino) => (
+        // <div key={i++}>
+        //   <p>{dino.name}</p>
+        //   <p>{dino.age}</p>
+        // </div>
+      ))} */}
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('baby')}>
       <img src="baby.JPG" alt="baby" style={{ width: '100px', height: 'auto' }} />
       </button>
@@ -78,7 +82,7 @@ export function Play({ user, setDino, dino }) {
       <img src="mom.JPG" alt="mom" style={{ width: '100px', height: 'auto' }} />
       </button>
       <button style={{ width: '100px', height: '100px' }} onClick={() => dinoHandler('dad')}>
-      <img src="dad.JPG" alt="dad" style={{ width: '100px', height: 'auto' }} />
+      <img src="dad.JPG" alt="dad" style={{ width: '150px', height: 'auto' }} />
       </button>
       {/* {imgdisplay} dino!
       <img src={imgdisplay} /> */}
