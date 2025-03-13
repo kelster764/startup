@@ -7,15 +7,23 @@ export function About() {
   const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
 
   React.useEffect(() => {
-    setImageUrl(`website_pitch.jpg`);
+    //setImageUrl(`website_pitch.jpg`);
     setQuote('The dino are within you');
     setQuoteAuthor('Ur mom');
+
+
+    fetch('https://api.thecatapi.com/v1/images/search')
+    .then((response) => response.json())
+    .then((data) => {
+      setImageUrl(data[0].url);
+    })
+    .catch();
+
   }, []);
 
   return (
     <main>
-    <div id="picture" className="picture-box"><img width="400px" src={imageUrl} alt="random image" /></div>
-
+  
     <p>
       The dinos sing to you, you sing back to the dinos. Just press dinos to your heart's content.
     </p>
@@ -28,7 +36,8 @@ export function About() {
     <div className="quote-box">
       <p className = 'quote'> {quote}</p>
       <p className = 'author'>{quoteAuthor} </p>
-    </div>
+      <div id="picture" className="picture-box"><img width="400px" src={imageUrl} alt="random image" /></div>
+</div>
   </main>
   );
 }
