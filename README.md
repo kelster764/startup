@@ -105,6 +105,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ X] **Calls to third party endpoints** - I did this. I put the random cat api in my about page.
 - [X ] **Backend service endpoints** - I did this
 - [X ] **Frontend calls service endpoints** - I did this
+I also fixed things that I didn't get around to in react. Now the dinos sing!
 
 ## 🚀 DB/Login deliverable
 
