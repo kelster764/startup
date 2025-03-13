@@ -1,6 +1,10 @@
 import React from 'react';
 import './play_styles.css';
 
+const babysound = new Audio(`/baby.mp3`);
+const kidsound = new Audio(`/kid.mp3`);
+const momsound = new Audio(`/mom.mp3`);
+const dadsound = new Audio(`/dad2.mp3`);
 
 
 const getRandomName = () => {
@@ -40,6 +44,19 @@ export function Play({ user, setDino, dino }) {
 
   const dinoHandler = (dino) => {
     setDino(dino);
+    if(dino === 'baby'){
+      babysound.play();
+    }
+    else if(dino === 'kid'){
+      kidsound.play();
+    }
+    else if(dino === 'mom'){
+      momsound.play();
+    }
+    else if(dino === 'dad'){
+      dadsound.play();
+    }
+
     saveScore(dino);
   };
 
