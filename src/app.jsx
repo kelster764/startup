@@ -9,7 +9,7 @@ import { Scores } from './scores/scores';
 import { About } from './about/about';
 
 export default function App() {
-  const [user, setUser] = React.useState('Billy');
+  const [user, setUser] = React.useState('');
   const[yourDino, setDino] = React.useState("");
   return (
     <BrowserRouter>

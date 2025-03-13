@@ -8,6 +8,7 @@ export function Login({ setUser }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
+  const [logonstatus, setLoginStatus] = React.useState(localStorage.getItem('email') ? 'login' : 'logout');
 
   function logout() {
     fetch(`/api/auth/logout`, {
@@ -18,6 +19,8 @@ export function Login({ setUser }) {
       })
       .finally(() => {
         localStorage.removeItem('email');
+        setUser('');
+        setLoginStatus('logout');
       });
   }
 
@@ -29,12 +32,12 @@ export function Login({ setUser }) {
 
   async function loginUser() {
     loginOrCreate(`/api/auth/login`);
-    setUser(email);
+    //setUser(email);
   }
 
   async function createUser() {
     loginOrCreate(`/api/auth/create`);
-    setUser(email);
+    //setUser(email);
   }
 
   async function loginOrCreate(endpoint) {
@@ -47,6 +50,8 @@ export function Login({ setUser }) {
     });
     if (response?.status === 200) {
       localStorage.setItem('email', email);
+      setUser(email);
+      setLoginStatus('login');
       // props.onLogin(userName);
     } else {
       const body = await response.json();
@@ -60,6 +65,14 @@ export function Login({ setUser }) {
   // ;
   return (
     <main>
+      {logonstatus === 'login' ?(
+        <section>
+        <p>Click some Dinos!!</p>
+        <button type = 'submit' onClick = {() => logout()}>
+            logout</button>
+            </section>
+
+      ) : (
       <section>
 
           <div>
@@ -80,10 +93,11 @@ export function Login({ setUser }) {
             Login</button>
           <button type='submit' variant = 'secondary' onClick= {() => createUser()}>
             Create</button>
-          <button type = 'submit' onClick = {() => logout()}>
-            logout</button>
+          
       </section>
-      {/* <MessageDialog message={displayError} onHide={() => setDisplayError(null)} /> */}
+      
+        )}
+        <p>{displayError}</p>
     </main>
   );
 }
