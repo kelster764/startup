@@ -125,6 +125,7 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
+  //change the thing here
   users.push(user);
 
   return user;
