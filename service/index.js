@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const express = require('express');
+const DB = require('./database');
 const authCookieName = 'token';
 
 const app = express();
@@ -96,26 +97,30 @@ app.listen(port, () => {
 });
 
 // updateScores considers a new score for inclusion in the high scores.
-function updateScores(newScore) {
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score != prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) {
-    scores.push(newScore);
-  }
-
-  if (scores.length > 10) {
-    scores.length = 10;
-  }
-
-  return scores;
+async function updateScores(newScore) {
+  await DB.addScore(newScore);
+  return DB.getHighScores();
 }
+// function updateScores(newScore) {
+//   let found = false;
+//   for (const [i, prevScore] of scores.entries()) {
+//     if (newScore.score != prevScore.score) {
+//       scores.splice(i, 0, newScore);
+//       found = true;
+//       break;
+//     }
+//   }
+
+//   if (!found) {
+//     scores.push(newScore);
+//   }
+
+//   if (scores.length > 10) {
+//     scores.length = 10;
+//   }
+
+//   return scores;
+// }
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
@@ -126,15 +131,21 @@ async function createUser(email, password) {
     token: uuid.v4(),
   };
   //change the thing here
-  users.push(user);
-
+  //users.push(user);
+  DB.addUser(user);
+  //addUser(user);
+  //this above will call the database thing
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
+  // return users.find((u) => u[field] === value);
 }
 
 // setAuthCookie in the HTTP response

@@ -5,7 +5,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 
 const client = new MongoClient(url);
 const db = client.db('dinos');
-const userCollection = db.collection('name');
+const userCollection = db.collection('user');
 const scoreCollection = db.collection('dino');
 
 
@@ -64,10 +64,32 @@ async function addUser(user){
     await userCollection.insertOne(user);
 }
 
+async function addScore(score){
+    return scoreCollection.insertOne(score);
+}
 
+async function getHighScores(){
+    const query = { score: { $gt: 0, $lt: 900 } };
+    const options = {
+        limit: 10,
+    };
+    const cursor = scoreCollection.find(query, options);
+    return cursor.toArray();
+}
+
+function getUser(email) {
+    return userCollection.findOne({ email: email });
+  }
+
+function getUserByToken(token) {
+return userCollection.findOne({ token: token });
+}
+  
 
 module.exports = {
-
-    addUser
+    addUser,
+    addScore,
+    getHighScores,
+    getUser,
+    getUserByToken
   };
-  
