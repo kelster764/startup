@@ -22,9 +22,10 @@ const scoreCollection = db.collection('dino');
 
 
 
-  async function main() {
+  (async function testConnection() {
     try {
       // Test that you can connect to the database
+      //client.connect();
       await db.command({ ping: 1 });
       console.log(`DB connected to ${config.hostname}`);
     } catch (ex) {
@@ -32,32 +33,31 @@ const scoreCollection = db.collection('dino');
       process.exit(1);
     }
   
-    try {
-      // Insert a document
-      const user = {
-        email: 'urmom',
-        password: 'cheese'
-      };
-      await userCollection.insertOne(user);
-      const query = { email: 'urmom'};
-      const options = {
-        sort: {},
-        limit: 10,
-      };
-      const cursor = userCollection.find(query, options);
-      const users = await cursor.toArray();
-      users.forEach((i) => console.log(i));
+    // try {
+    //   // Insert a document
+    //   const user = {
+    //     email: 'urmom',
+    //     password: 'cheese'
+    //   };
+    //   await userCollection.insertOne(user);
+    //   const query = { email: 'urmom'};
+    //   const options = {
+    //     sort: {},
+    //     limit: 10,
+    //   };
+    //   const cursor = userCollection.find(query, options);
+    //   const users = await cursor.toArray();
+    //   users.forEach((i) => console.log(i));
   
-    } catch (ex) {
-      console.log(`Database (${url}) error: ${ex.message}`);
-    } finally {
-      await client.close();
-    }
+    // } catch (ex) {
+    //   console.log(`Database (${url}) error: ${ex.message}`);
+    // } finally {
+    //   await client.close();
+    // }
 
 
-  }
-  
-  main();
+  })();
+  //main();
 
 
 async function addUser(user){
