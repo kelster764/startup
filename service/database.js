@@ -84,6 +84,10 @@ function getUser(email) {
 function getUserByToken(token) {
 return userCollection.findOne({ token: token });
 }
+
+async function updateUser(user){
+  await userCollection.updateOne({email: user.email}, {$set: user});
+}
   
 
 module.exports = {
@@ -91,5 +95,6 @@ module.exports = {
     addScore,
     getHighScores,
     getUser,
-    getUserByToken
+    getUserByToken,
+    updateUser
   };

@@ -41,6 +41,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     if (user) {
       if (await bcrypt.compare(req.body.password, user.password)) {
         user.token = uuid.v4();
+        await DB.updateUser
         setAuthCookie(res, user.token);
         res.send({ email: user.email });
         return;
@@ -55,6 +56,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
       delete user.token;
+      DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -72,7 +74,8 @@ apiRouter.post('/auth/create', async (req, res) => {
   };
   
   // GetScores
-  apiRouter.get('/scores', verifyAuth, (_req, res) => {
+  apiRouter.get('/scores', verifyAuth, async (_req, res) => {
+    const scores = await DB.getHighScores();
     res.send(scores);
   });
   
