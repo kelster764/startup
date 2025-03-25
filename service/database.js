@@ -73,7 +73,7 @@ async function updateScore(score){
 }
 
 async function findScore(score){
-  return userCollection.findOne({ name: score.name });
+  return scoreCollection.findOne({ name: score });
 }
 
 // async function getHighScores(){

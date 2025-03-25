@@ -105,7 +105,7 @@ app.listen(port, () => {
 async function updateScores(newScore) {
   const user = await DB.getUser(newScore.name);
   // const user = await findUser('token', req.cookies[authCookieName]);
-  const existingscore = DB.findScore(user.email);
+  const existingscore = await DB.findScore(user.email);
   if(existingscore){
     DB.updateScore(newScore);
   } else{
