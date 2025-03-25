@@ -41,9 +41,10 @@ apiRouter.post('/auth/create', async (req, res) => {
     if (user) {
       if (await bcrypt.compare(req.body.password, user.password)) {
         user.token = uuid.v4();
-        await DB.updateUser
+        await DB.updateUser(user);
         setAuthCookie(res, user.token);
         res.send({ email: user.email });
+        scores = DB.getHighScores;
         return;
       }
     }
@@ -80,7 +81,8 @@ apiRouter.post('/auth/create', async (req, res) => {
   });
   
   // SubmitScore
-  apiRouter.post('/score', verifyAuth, (req, res) => {
+  apiRouter.post('/score', verifyAuth, async (req, res) => {
+    //const scores = await DB.addScore();
     scores = updateScores(req.body);
     res.send(scores);
   });
@@ -101,7 +103,15 @@ app.listen(port, () => {
 
 // updateScores considers a new score for inclusion in the high scores.
 async function updateScores(newScore) {
-  await DB.addScore(newScore);
+  const user = await DB.getUser(newScore.name);
+  // const user = await findUser('token', req.cookies[authCookieName]);
+  const existingscore = DB.findScore(user.email);
+  if(existingscore){
+    DB.updateScore(newScore);
+  } else{
+    await DB.addScore(newScore);
+  }
+  
   return DB.getHighScores();
 }
 // function updateScores(newScore) {

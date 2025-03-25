@@ -52,6 +52,7 @@ export function Login({ setUser }) {
       localStorage.setItem('email', email);
       setUser(email);
       setLoginStatus('login');
+      
       // props.onLogin(userName);
     } else {
       const body = await response.json();
