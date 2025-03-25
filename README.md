@@ -111,11 +111,11 @@ I also fixed things that I didn't get around to in react. Now the dinos sing!
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [ X] **User registration** - 
+- [ X] **User login and logout** - 
+- [ X] **Stores data in MongoDB** - 
+- [ X] **Stores credentials in MongoDB** - 
+- [X ] **Restricts functionality based on authentication** - You cannot save your scores or look at scores if you are not logged in. I however still wanted the dino buttons accessible for when I show my friends 
 
 ## 🚀 WebSocket deliverable
 
