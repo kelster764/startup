@@ -1,5 +1,8 @@
 const GameEvent = {
-    System: 'system',
+    Baby: 'Baby',
+    Kid: 'Kid',
+    Mom: 'Mom',
+    Dad: 'Dad',
     End: 'gameEnd',
     Start: 'gameStart',
 }
@@ -31,12 +34,32 @@ class GameEventNotifier {
               const event = JSON.parse(await msg.data.text());
               this.receiveEvent(event);
             } catch {}
-          };
-
+        };
+    }
+    
+    broadcastEvent(from, type, value) {
+        const event = new EventMessage(from, type, value);
+        this.socket.send(JSON.stringify(event));
     }
 
+    addHandler(handler) {
+        this.handlers.push(handler);
+    }
 
+    removeHandler(handler) {
+        this.handlers.filter((h) => h !== handler);
+    }
+    
+     receiveEvent(event) {
+        this.events.push(event);
 
-
-
+        this.events.forEach((e) => {
+        this.handlers.forEach((handler) => {
+        handler(e);
+      });
+    });
+  }
 }
+
+const GameNotifier = new GameEventNotifier();
+export { GameEvent, GameNotifier };

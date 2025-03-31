@@ -1,4 +1,5 @@
 import React from 'react';
+import { GameEvent, GameNotifier } from './gameNotifier';
 import './play_styles.css';
 
 const babysound = new Audio(`/baby.mp3`);
@@ -46,15 +47,19 @@ export function Play({ user, setDino, dino }) {
     setDino(dino);
     if(dino === 'baby'){
       babysound.play();
+      GameNotifier.broadcastEvent(userName, GameEvent.Baby, {});
     }
     else if(dino === 'kid'){
       kidsound.play();
+      GameNotifier.broadcastEvent(userName, GameEvent.Kid, {});
     }
     else if(dino === 'mom'){
       momsound.play();
+      GameNotifier.broadcastEvent(userName, GameEvent.Mom, {});
     }
     else if(dino === 'dad'){
       dadsound.play();
+      GameNotifier.broadcastEvent(userName, GameEvent.Dad, {});
     }
 
     saveScore(dino);
