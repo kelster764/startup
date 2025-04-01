@@ -47,19 +47,16 @@ export function Play({ user, setDino, dino }) {
     setDino(dino);
     if(dino === 'baby'){
       babysound.play();
-      GameNotifier.broadcastEvent(userName, GameEvent.Baby, {});
+
     }
     else if(dino === 'kid'){
       kidsound.play();
-      GameNotifier.broadcastEvent(userName, GameEvent.Kid, {});
     }
     else if(dino === 'mom'){
       momsound.play();
-      GameNotifier.broadcastEvent(userName, GameEvent.Mom, {});
     }
     else if(dino === 'dad'){
       dadsound.play();
-      GameNotifier.broadcastEvent(userName, GameEvent.Dad, {});
     }
 
     saveScore(dino);
@@ -73,6 +70,18 @@ export function Play({ user, setDino, dino }) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newScore),
     });
+    if(newScore.dino === 'baby'){
+    GameNotifier.broadcastEvent(userName, GameEvent.Baby, {});
+    }
+    else if (newScore.dino === 'kid'){
+      GameNotifier.broadcastEvent(userName, GameEvent.Kid, {});
+    }
+    else if (newScore.dino === 'mom'){
+      GameNotifier.broadcastEvent(userName, GameEvent.Mom, {});
+    }
+    else if (newScore.dino === 'dad'){
+      GameNotifier.broadcastEvent(userName, GameEvent.Dad, {});
+    }
   }
 
   let imgdisplay = 'mom.JPG';
