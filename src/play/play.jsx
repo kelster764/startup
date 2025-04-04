@@ -1,5 +1,6 @@
 import React from 'react';
 import { GameEvent, GameNotifier } from './gameNotifier';
+import { Players } from './players';
 import './play_styles.css';
 
 const babysound = new Audio(`/baby.mp3`);
@@ -71,16 +72,17 @@ export function Play({ user, setDino, dino }) {
       body: JSON.stringify(newScore),
     });
     if(newScore.dino === 'baby'){
-    GameNotifier.broadcastEvent(userName, GameEvent.Baby, {});
+      console.log("whatever");
+    GameNotifier.broadcastEvent(user, GameEvent.Baby, {msg: 'is baby'});
     }
     else if (newScore.dino === 'kid'){
-      GameNotifier.broadcastEvent(userName, GameEvent.Kid, {});
+      GameNotifier.broadcastEvent(user, GameEvent.Kid, {msg: 'is kid'});
     }
     else if (newScore.dino === 'mom'){
-      GameNotifier.broadcastEvent(userName, GameEvent.Mom, {});
+      GameNotifier.broadcastEvent(user, GameEvent.Mom, {msg: 'is mom'});
     }
     else if (newScore.dino === 'dad'){
-      GameNotifier.broadcastEvent(userName, GameEvent.Dad, {});
+      GameNotifier.broadcastEvent(user, GameEvent.Dad, {msg: 'is dad'});
     }
   }
 
@@ -117,7 +119,9 @@ export function Play({ user, setDino, dino }) {
       </button>
       {/* {imgdisplay} dino!
       <img src={imgdisplay} /> */}
+      <Players userName={user} />
     </div>
+    
   );
 
   // return (

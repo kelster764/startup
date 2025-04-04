@@ -2,7 +2,8 @@ import React from 'react';
 
 import { GameEvent, GameNotifier } from './gameNotifier';
 
-export function Players(userName){
+export function Players({userName}){
+    //const userName = userName
     const [events, setEvent] = React.useState([]);
 
     React.useEffect(() => {
@@ -11,7 +12,7 @@ export function Players(userName){
         return () => {
           GameNotifier.removeHandler(handleGameEvent);
         };
-      });
+      }, []);
 
       function handleGameEvent(event) {
         setEvent([...events, event]);

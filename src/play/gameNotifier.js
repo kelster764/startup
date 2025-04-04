@@ -5,6 +5,7 @@ const GameEvent = {
     Dad: 'Dad',
     End: 'gameEnd',
     Start: 'gameStart',
+    System: 'system'
 }
 
 class EventMessage {
@@ -27,6 +28,7 @@ class GameEventNotifier {
             this.receiveEvent(new EventMessage('Dinos', GameEvent.System, { msg: 'connected' }));
           };
         this.socket.onclose = (event) => {
+          console.log("WebSocket closed:", event);
             this.receiveEvent(new EventMessage('Dinos', GameEvent.System, { msg: 'disconnected' }));
         };
         this.socket.onmessage = async (msg) => {
@@ -38,7 +40,9 @@ class GameEventNotifier {
     }
     
     broadcastEvent(from, type, value) {
+      console.log("broadcasted");
         const event = new EventMessage(from, type, value);
+        console.log(JSON.stringify(event));
         this.socket.send(JSON.stringify(event));
     }
 
