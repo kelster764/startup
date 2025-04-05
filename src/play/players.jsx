@@ -1,4 +1,5 @@
 import React from 'react';
+import './players_styles.css'
 
 import { GameEvent, GameNotifier } from './gameNotifier';
 
@@ -49,7 +50,7 @@ export function Players({userName}){
       }
       return (
         <div className='players'>
-          Players
+          Players:
           <span className='player-name'></span>
           <div id='player-messages'>{createMessageArray()}</div>
         </div>
