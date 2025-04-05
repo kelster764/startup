@@ -15,7 +15,11 @@ export function Players({userName}){
       }, []);
 
       function handleGameEvent(event) {
-        setEvent([...events, event]);
+        //setEvent(events)
+        //setEvent([...events, event]);
+        setEvent((prevEvents) => [...prevEvents, event]);
+        // prevEvents => [...prevEvents, event]
+        // setEvent(events, prevEvents)
       }
 
       function createMessageArray() {
@@ -23,13 +27,15 @@ export function Players({userName}){
         for (const [i, event] of events.entries()) {
           let message = 'unknown';
           if (event.type === GameEvent.Baby) {
-            message = `is baby`;
+            message = ` is baby`;
           } else if (event.type === GameEvent.Kid) {
-            message = `is kid`;
+            message = ` is kid`;
           } else if (event.type === GameEvent.Mom) {
-            message = `is mom`;
+            message = ` is mom`;
           }else if (event.type === GameEvent.Dad) {
-            message = `is dad`;
+            message = ` is dad`;
+          }else if (event.type === GameEvent.System) {
+            message = event.value.msg; // show "connected", "disconnected", etc.
           }
     
           messageArray.push(
@@ -43,8 +49,8 @@ export function Players({userName}){
       }
       return (
         <div className='players'>
-          Player
-          <span className='player-name'>{userName}</span>
+          Players
+          <span className='player-name'></span>
           <div id='player-messages'>{createMessageArray()}</div>
         </div>
       );

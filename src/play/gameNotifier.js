@@ -57,10 +57,10 @@ class GameEventNotifier {
      receiveEvent(event) {
         this.events.push(event);
 
-        this.events.forEach((e) => {
+        //this.events.forEach((e) => {
         this.handlers.forEach((handler) => {
-        handler(e);
-      });
+        handler(event);
+      //});
     });
   }
 }
