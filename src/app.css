@@ -13,14 +13,13 @@
   }
 
   menu{
-    text-align: left;
+    display: flex;
+    text-align: center;
     list-style-type: none;
-    padding: 0;
+    padding-left: 100px;
     margin: 0;
-    display:flex;
-    padding-right: 70px;
-    justify-content: space-between;
-    width: 100%;
+    gap: 40px;
+    transform: translateX(40px);
   }
 
   body{
